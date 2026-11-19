@@ -24,6 +24,9 @@ function showFrame() {
   if (scanControls.hidden === false) drawWindow();
   document.querySelector("#time").textContent = label + " frame";
   document.querySelector("#scene").textContent = scenes[scene];
+  document.querySelector("#scan-finding").textContent = scene === "cup"
+    ? "For this cup lift, covering the left-hand region changes the code most."
+    : "Select Peak to locate the most influential patch in this pair.";
   document.querySelectorAll("[data-frame]").forEach(b => b.setAttribute("aria-pressed", Number(b.dataset.frame) === frame));
   document.querySelectorAll("[data-scene]").forEach(b => b.setAttribute("aria-pressed", b.dataset.scene === scene));
 }
@@ -70,7 +73,7 @@ function stopScan() {
   box.classList.remove("masking");
   clearInterval(timer);
   timer = null;
-  play.textContent = "Replay scan";
+  play.textContent = "Play scan";
 }
 function showPeak() {
   slider.value = peakIndex();
@@ -98,45 +101,8 @@ document.querySelector("#peak").onclick = () => {stopScan(); showPeak();};
 scanControls.hidden = false;
 box.classList.add("active");
 showPeak();
-let started = false;
 new IntersectionObserver(([entry]) => {
-  if (entry.isIntersecting && !started && !document.hidden) {
-    started = true;
-    if (!reducedMotion.matches) runScan();
-  } else if (!entry.isIntersecting) stopScan();
-}, {threshold:0.4}).observe(document.querySelector(".photo"));
+  if (!entry.isIntersecting) stopScan();
+}).observe(document.querySelector(".photo"));
 document.addEventListener("visibilitychange", () => {if (document.hidden) stopScan();});
 reducedMotion.addEventListener("change", () => {if (reducedMotion.matches) {stopScan();showPeak();}});
-
-const pathways = {
-  wrist: {
-    nodes:["Two RGB frames","Latent action","Wrist prediction"],
-    note:"Hand queries pool features from eight object slots. Measured wrist translation and rotation in the earlier head frame supervise the prediction from the latent action."
-  },
-  camera: {
-    nodes:["Head motion + current slots + latent action","Forward model","Future slots"],
-    note:"Measured head motion gives the forward model a separate input for predicting how a turn changes the view. At inference, the action encoder uses only the two RGB frames."
-  }
-};
-const flow = document.querySelector("#signal-flow");
-function traceFlow() {
-  if (reducedMotion.matches) return;
-  flow.querySelectorAll("i").forEach((link,index) => {
-    const dot = link.firstElementChild;
-    dot.getAnimations().forEach(a=>a.cancel());
-    dot.animate([{left:"0%",opacity:0},{offset:.18,opacity:1},{offset:.82,opacity:1},{left:"95%",opacity:0}],
-                {duration:650,delay:index*520,easing:"ease-in-out"});
-  });
-}
-flow.querySelectorAll("i").forEach(link => link.append(document.createElement("b")));
-document.querySelectorAll("[data-path]").forEach(button => button.onclick = () => {
-  const route = pathways[button.dataset.path];
-  flow.querySelectorAll("span").forEach((node,i) => node.textContent = route.nodes[i]);
-  document.querySelector("#signal-note").textContent = route.note;
-  document.querySelectorAll("[data-path]").forEach(b=>b.setAttribute("aria-pressed", b===button));
-  traceFlow();
-});
-const flowObserver = new IntersectionObserver(([entry]) => {
-  if (entry.isIntersecting) {traceFlow();flowObserver.disconnect();}
-});
-flowObserver.observe(flow);
