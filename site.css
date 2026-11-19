@@ -34,3 +34,4 @@
 @media(max-width:850px) and (min-width:651px){.hero{grid-template-columns:.72fr 1.28fr}.hero h1{font-size:69px}.hero .fig-tools button,.hero .fig-steps button{padding:5px 7px}}
 @media(max-width:650px){.hero,.example-grid{grid-template-columns:minmax(0,1fr)}.hero{gap:16px;padding-block:22px}.hero h1{font-size:clamp(52px,13vw,74px);margin:8px 0}.hero .title{font-size:clamp(23px,6vw,30px)}.hero .lead{margin-top:8px;line-height:1.35}.hero .actions{margin-top:10px}.hero .button{padding:6px 12px}.hero #fig-stage{height:clamp(140px,39vw,230px)}.hero .fig-tools,.hero .fig-steps,.hero .fig-caption{padding-inline:10px}.example-grid{gap:14px}nav{gap:10px}}
 @media(max-width:380px){header .nav{flex-wrap:wrap;padding:9px 0;gap:7px}header nav{width:100%;justify-content:space-between}.nav-paper{white-space:nowrap}}
+.hero #fig-stage{width:100%;height:auto;aspect-ratio:620/286}.fig-canvas{background:#f4f6ef;padding:5px 3px}.fig-canvas text{font-family:var(--roman)}
