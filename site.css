@@ -44,3 +44,4 @@
 .byline span{white-space:nowrap}.byline sup{font-size:.68em;color:var(--pine);margin-left:1px}
 .affiliations{font-size:14px;color:var(--muted);margin-top:5px}.affiliations summary{cursor:pointer;color:var(--pine);width:fit-content}.affiliations ol{padding-left:1.4em;margin:7px 0;line-height:1.45}
 @media(max-width:650px){.byline{font-size:14px;margin-top:10px}}
+.author-roles{font-size:13px;line-height:1.4;color:var(--muted);margin:4px 0}.author-roles span{display:inline-block;margin-right:6px}
