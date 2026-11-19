@@ -39,3 +39,8 @@
 .film-transport{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--line)}
 #film-chapter{font-size:14px;color:var(--ink)}#film-progress{height:3px;flex:1;min-width:15px;max-width:140px;accent-color:var(--pine)}
 #fig-play{margin-left:auto;border:0;border-radius:6px;padding:6px 16px;background:var(--pine);color:white;font:15px var(--roman);min-width:74px}
+
+.byline{margin-top:18px;font-size:16px;line-height:1.55;color:var(--ink)}
+.byline span{white-space:nowrap}.byline sup{font-size:.68em;color:var(--pine);margin-left:1px}
+.affiliations{font-size:14px;color:var(--muted);margin-top:5px}.affiliations summary{cursor:pointer;color:var(--pine);width:fit-content}.affiliations ol{padding-left:1.4em;margin:7px 0;line-height:1.45}
+@media(max-width:650px){.byline{font-size:14px;margin-top:10px}}
