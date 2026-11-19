@@ -24,3 +24,13 @@
 @media(prefers-reduced-motion:no-preference){.fig-trace{stroke-dasharray:1;animation:draw-path .7s ease-out both}@keyframes draw-path{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}}
 .fig-steps,.fig-tools{display:flex;gap:6px;padding:14px 20px 0;flex-wrap:wrap}.fig-steps button,.fig-tools button{background:transparent;color:var(--pine);border:1px solid var(--line);border-radius:5px;padding:7px 12px;font:14px var(--roman)}.fig-steps button[aria-pressed=true]{background:#e2ede4;border-color:#739d88}.fig-caption{padding:14px 20px 0;min-height:96px}.fig-caption strong{font-size:19px}.fig-caption p{max-width:90ch;margin:4px 0 0;color:var(--muted)}.fig-tools{padding:12px 20px 18px}.fig-tools .primary-control{background:var(--pine);color:white;min-width:95px}.fig-tools button:disabled{opacity:.4;cursor:default}
 @media(max-width:650px){.fig-walk figcaption{align-items:start;padding:13px 12px}.fig-walk figcaption h3{font-size:18px}.fig-walk figcaption a{font-size:12px}.fig-canvas{padding:2px}.fig-steps,.fig-caption,.fig-tools{padding-inline:12px}.fig-steps button,.fig-tools button{padding:6px 8px}.fig-caption{min-height:154px;font-size:15px}.fig-caption strong{font-size:17px}#fig-stage{height:clamp(160px,47vw,260px)}}
+
+.hero{grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(24px,4vw,58px);padding-block:42px}
+.hero .fig-walk{margin:0}.hero #fig-stage{height:clamp(178px,17vw,264px)}
+.hero .fig-tools{padding:12px 16px;border-bottom:1px solid var(--line)}
+.hero .fig-steps{padding:12px 16px 0}.hero .fig-caption{padding:12px 16px 16px;min-height:108px}
+.example-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:8%;align-items:center}
+.example-intro>p:last-child{color:var(--muted);max-width:50ch}.example-grid .viewer{min-width:0}
+@media(max-width:850px) and (min-width:651px){.hero{grid-template-columns:.72fr 1.28fr}.hero h1{font-size:69px}.hero .fig-tools button,.hero .fig-steps button{padding:5px 7px}}
+@media(max-width:650px){.hero,.example-grid{grid-template-columns:minmax(0,1fr)}.hero{gap:16px;padding-block:22px}.hero h1{font-size:clamp(52px,13vw,74px);margin:8px 0}.hero .title{font-size:clamp(23px,6vw,30px)}.hero .lead{margin-top:8px;line-height:1.35}.hero .actions{margin-top:10px}.hero .button{padding:6px 12px}.hero #fig-stage{height:clamp(140px,39vw,230px)}.hero .fig-tools,.hero .fig-steps,.hero .fig-caption{padding-inline:10px}.example-grid{gap:14px}nav{gap:10px}}
+@media(max-width:380px){header .nav{flex-wrap:wrap;padding:9px 0;gap:7px}header nav{width:100%;justify-content:space-between}.nav-paper{white-space:nowrap}}

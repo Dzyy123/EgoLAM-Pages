@@ -86,7 +86,19 @@ stageButtons.forEach((b,i)=>b.onclick=()=>jump(i));
 document.querySelector("#fig-back").onclick=()=>jump(stageIndex-1);
 document.querySelector("#fig-next").onclick=()=>jump(stageIndex+1);
 document.querySelector("#fig-reset").onclick=()=>jump(-1);
-new IntersectionObserver(([entry])=>{if(!entry.isIntersecting && playTimer!==null)stopFigure();}).observe(diagram);
+// Introduce the frame pair once when it is in view. Manual navigation takes priority.
+let introduced = false;
+diagram.addEventListener("click", () => {introduced = true;}, {capture:true});
+new IntersectionObserver(([entry]) => {
+  if (!entry.isIntersecting || document.hidden) {
+    if (playTimer !== null) stopFigure();
+    return;
+  }
+  if (!introduced && entry.intersectionRatio >= .65) {
+    introduced = true;
+    if (!reducedMotion.matches) scheduleStage();
+  }
+}, {threshold:[0,.65]}).observe(svg);
 document.addEventListener("visibilitychange",()=>{if(document.hidden)stopFigure();});
 reducedMotion.addEventListener("change",()=>jump(stageIndex));
-presentStage(-1);
+presentStage(0);
